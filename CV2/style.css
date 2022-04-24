@@ -1,0 +1,229 @@
+
+/* FONTS */
+
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+
+/* VARIABLES */
+
+:root {
+
+    --font-size : 1rem;
+}
+
+.light-mode {
+
+    --navbar-color:#222;
+    --navbar-bg-color:#F0F0F0;
+}
+
+.dark-mode {
+
+    --navbar-color:#FFF;
+    --navbar-bg-color:#000;
+}
+
+/* RESET */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+ul {
+
+    list-style: none;
+}
+
+li {
+    list-style: none;
+
+}
+
+/* NAVBAR */
+
+.navbar {
+
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    height: 65px;
+    background: var(--navbar-bg-color);
+    color: var(--navbar-color);
+}
+
+.navbar__logo {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.navbar__links {
+    display:flex;
+}
+
+.navbar__link {
+
+    padding: 0 20px;
+}
+
+.navbar__link > a {
+
+    color:var(--navbar-color);
+    text-decoration:none;
+}
+
+.burger {
+
+    display:none;
+}
+
+/* BASIC STYLE */
+
+body {
+
+    font-size:var(--font-size);
+    font-family: 'PT Sans', sans-serif;
+}
+
+
+/* SMALL DEVICE */
+
+@media screen and (max-width:767px) {
+
+    .navbar__links {
+
+        display: flex;
+        flex-direction: column;
+        width:0;
+        height:calc(100vh - 65px);
+        position:absolute;
+        top:65px;
+        right:0;
+        background:var(--navbar-bg-color);
+        transition:all .5s ease-in-out;
+
+    }
+
+    .show-nav .navbar__links {
+
+        width:100%;
+    }
+
+    .navbar__link > a {
+        display:block;
+        padding: 1rem;
+        font-size:1.6rem;
+        color:var(--navbar-color);
+        transition:all .4s ease-in-out;
+    }
+
+    .navbar__link > a:hover {
+
+        display:block;
+        padding-left: 2rem;
+        /* letter-spacing:3px; */
+    }
+
+
+    /* toggle menu */
+
+    .burger {
+        display:block;
+        position: relative;
+        padding:0;
+        width:35px;
+        height:35px;
+        border:none;
+        background: transparent;
+        cursor: pointer;
+
+    }
+
+    .bar {
+        display:block;
+        width:35px;
+        height:4px;
+        background:var(--navbar-color);
+        border-radius: 3px;
+        transition:all .5s ease-in-out;
+    }
+
+    .show-nav .bar {
+
+        width:0;
+        background:transparent;
+    }
+
+
+    .bar::before, .bar::after {
+
+        content:"";
+        width:35px;
+        height:4px;
+        position:absolute;
+        left:0;
+        background:var(--navbar-color);
+        border-radius: 3px;
+        transition:all .5s ease-in-out;
+
+    }
+
+    .bar::before { 
+        transform: translateY(-10px); /* ici les translateY nous servent écarter mes bar ::after et ::before
+        /* sur l'axe vertical. Car ceux ci se place naturellement derrière .bar. * */
+
+    }
+
+    .show-nav .bar::before {
+
+        transform:rotate(45deg);
+    }
+
+    .bar::after { 
+        transform: translateY(10px);
+
+    }
+
+    .show-nav .bar::after {
+
+        transform:rotate(-45deg);
+    }
+
+
+
+
+
+}
+
+
+/* MEDIUM DEVICE */
+
+@media screen and (min-width:768px) {
+
+    .navbar__link > a::after {
+
+        display:block;
+        content:"";
+        width:0;
+        height: 1px;
+        background: var(--navbar-color);
+        transition: width .4s;
+    }
+
+}
+
+.navbar__link:hover > a::after {
+
+    width:100%;
+}
+
+
+
+
+
+
+
+
+
+
+
